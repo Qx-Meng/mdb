@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    datasource1:
+      url: jdbc:sqlserver://192.168.0.10:1433;databaseName=test1
+      username: rdsuser
+      password: tcpjw@123
+      initial-size: 1
+      min-idle: 1
+      max-active: 10
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    datasource2:
+      url: jdbc:sqlserver://192.168.0.10:1433;databaseName=test2
+      username: rdsuser
+      password: tcpjw@123
+      initial-size: 1
+      min-idle: 1
+      max-active: 10
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+
+
+server:
+  servlet:
+    context-path: /mdb
+  port: 1234
+
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
