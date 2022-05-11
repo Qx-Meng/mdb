@@ -29,6 +29,10 @@ public class DynamicDataSourceConfig extends AbstractRoutingDataSource {
         if (o == null) {
             return "w";
         }
+        //读写混合,走写库
+        if (o.equals("wr")) {
+            return "w";
+        }
         return o;
     }
 

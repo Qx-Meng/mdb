@@ -10,7 +10,7 @@
 
     <select id="query" resultType="java.lang.String">
 
-        select name from person where id = 1
+        select name from person where id = 2
 
     </select>
 

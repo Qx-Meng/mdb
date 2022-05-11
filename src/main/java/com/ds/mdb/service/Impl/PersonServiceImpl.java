@@ -1,5 +1,6 @@
 package com.ds.mdb.service.Impl;
 
+import com.ds.mdb.config.DynamicDataSourceConfig;
 import com.ds.mdb.mapper.TestMapper;
 import com.ds.mdb.service.PersonService;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void insert() {
+
         testMapper.insert("zhans", 18);
     }
 
@@ -21,4 +23,17 @@ public class PersonServiceImpl implements PersonService {
     public String query() {
         return testMapper.query();
     }
+
+    @Override
+    public String edit() {
+
+        //读写混合,走写库,配置这样的代码即可
+        DynamicDataSourceConfig.local.set("wr");
+
+        testMapper.insert("zhans", 18);
+
+        return testMapper.query();
+    }
+
+
 }

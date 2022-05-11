@@ -21,6 +21,10 @@ public class MybatisMdbAdapter implements Interceptor {
     public Object intercept(Invocation invocation) throws Throwable {
         Object[] args = invocation.getArgs();
         MappedStatement statement = (MappedStatement) args[0];
+        //读写混合,走写库
+        if (DynamicDataSourceConfig.local.get().equals("wr")) {
+            return invocation.proceed();
+        }
         if (statement.getSqlCommandType().equals(SqlCommandType.UPDATE)) {
             DynamicDataSourceConfig.local.set("w");
         } else if (statement.getSqlCommandType().equals(SqlCommandType.SELECT)) {

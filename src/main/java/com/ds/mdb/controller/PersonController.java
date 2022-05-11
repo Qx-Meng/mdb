@@ -23,4 +23,9 @@ public class PersonController {
     public String query(){
         return personService.query();
     }
+
+    @RequestMapping("/edit")
+    public String edit(){
+        return personService.edit();
+    }
 }
